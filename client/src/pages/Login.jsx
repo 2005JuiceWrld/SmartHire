@@ -48,13 +48,13 @@ const Login = () => {
     <div className="min-h-screen bg-slate-50 flex flex-col justify-center items-center p-6">
       <div className="w-full max-w-md">
         <div className="flex items-center justify-center gap-3 mb-8">
-          <div className="bg-indigo-600 p-2 rounded-xl text-white">
+          <div className="bg-indigo-600 p-2 rounded-md text-white">
             <Share2 size={32} />
           </div>
           <h1 className="text-3xl font-bold text-slate-900 tracking-tight">SmartHire</h1>
         </div>
 
-        <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-xl">
+        <div className="bg-white p-8 rounded-lg border border-slate-200 shadow-xl">
           <h2 className="text-2xl font-bold text-slate-800 mb-2 text-center">
             {needsRoleSelection ? 'Select Role' : 'Welcome Back'}
           </h2>
@@ -69,10 +69,10 @@ const Login = () => {
               {availableRoles.includes('candidate') && (
                 <button
                   onClick={() => handleRoleSelect('candidate')}
-                  className="w-full p-4 bg-indigo-50 border border-indigo-200 rounded-xl hover:bg-indigo-100 transition-colors flex items-center justify-between group text-left"
+                  className="w-full p-4 bg-indigo-50 border border-indigo-200 rounded-md hover:bg-indigo-100 transition-colors flex items-center justify-between group text-left"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm">
+                    <div className="w-10 h-10 bg-white rounded-md flex items-center justify-center shadow-sm">
                         <User className="text-indigo-600" size={20} />
                     </div>
                     <div>
@@ -86,10 +86,10 @@ const Login = () => {
               {availableRoles.includes('recruiter') && (
                 <button
                   onClick={() => handleRoleSelect('recruiter')}
-                  className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition-colors flex items-center justify-between group text-left"
+                  className="w-full p-4 bg-slate-50 border border-slate-200 rounded-md hover:bg-slate-100 transition-colors flex items-center justify-between group text-left"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm">
+                    <div className="w-10 h-10 bg-white rounded-md flex items-center justify-center shadow-sm">
                         <Briefcase className="text-slate-600" size={20} />
                     </div>
                     <div>
@@ -118,7 +118,7 @@ const Login = () => {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                    className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-md focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -133,7 +133,7 @@ const Login = () => {
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full pl-10 pr-12 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                    className="w-full pl-10 pr-12 py-3 bg-slate-50 border border-slate-200 rounded-md focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
                     placeholder="••••••••"
                   />
                   <button
@@ -147,7 +147,7 @@ const Login = () => {
               </div>
 
               {error && (
-                <div className="p-3 bg-red-50 text-red-600 text-sm font-medium rounded-lg border border-red-100">
+                <div className="p-3 bg-red-50 text-red-600 text-sm font-medium rounded-md border border-red-100">
                   {error}
                 </div>
               )}
@@ -155,7 +155,7 @@ const Login = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-indigo-600 text-white py-3 rounded-xl font-bold hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2"
+                className="w-full bg-indigo-600 text-white py-3 rounded-md font-bold hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2"
               >
                 {loading ? <Loader2 className="animate-spin" size={20} /> : 'Sign In'}
               </button>
