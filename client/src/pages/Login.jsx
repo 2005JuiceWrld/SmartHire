@@ -48,7 +48,7 @@ const Login = () => {
     <div className="min-h-screen bg-slate-50 flex flex-col justify-center items-center p-6">
       <div className="w-full max-w-md">
         <div className="flex items-center justify-center gap-3 mb-8">
-          <div className="bg-indigo-600 p-2 rounded-md text-white">
+          <div className="bg-sky-500 p-2 rounded-md text-white">
             <Share2 size={32} />
           </div>
           <h1 className="text-3xl font-bold text-slate-900 tracking-tight">SmartHire</h1>
@@ -69,15 +69,15 @@ const Login = () => {
               {availableRoles.includes('candidate') && (
                 <button
                   onClick={() => handleRoleSelect('candidate')}
-                  className="w-full p-4 bg-indigo-50 border border-indigo-200 rounded-md hover:bg-indigo-100 transition-colors flex items-center justify-between group text-left"
+                  className="w-full p-4 bg-sky-50 border border-sky-200 rounded-md hover:bg-sky-100 transition-colors flex items-center justify-between group text-left"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-white rounded-md flex items-center justify-center shadow-sm">
-                        <User className="text-indigo-600" size={20} />
+                        <User className="text-sky-600" size={20} />
                     </div>
                     <div>
-                        <span className="block font-bold text-indigo-900">Candidate</span>
-                        <span className="text-xs text-indigo-500">Sign in to find jobs</span>
+                        <span className="block font-bold text-sky-900">Candidate</span>
+                        <span className="text-xs text-sky-500">Sign in to find jobs</span>
                     </div>
                   </div>
                   <Share2 className="text-indigo-300 group-hover:translate-x-1 transition-transform" size={20} />
@@ -118,7 +118,7 @@ const Login = () => {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-md focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                    className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-md focus:ring-2 focus:ring-sky-500 outline-none transition-all"
                     placeholder="john@gmail.com"
                   />
                 </div>
@@ -133,7 +133,7 @@ const Login = () => {
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full pl-10 pr-12 py-3 bg-slate-50 border border-slate-200 rounded-md focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                    className="w-full pl-10 pr-12 py-3 bg-slate-50 border border-slate-200 rounded-md focus:ring-2 focus:ring-sky-500 outline-none transition-all"
                     placeholder="••••••••"
                   />
                   <button
@@ -155,7 +155,7 @@ const Login = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-indigo-600 text-white py-3 rounded-md font-bold hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2"
+                className="w-full bg-sky-500 text-white py-3 rounded-md font-bold hover:bg-sky-600 transition-colors flex items-center justify-center gap-2"
               >
                 {loading ? <Loader2 className="animate-spin" size={20} /> : 'Sign In'}
               </button>
@@ -165,7 +165,7 @@ const Login = () => {
           <div className="mt-8 pt-6 border-t border-slate-100 text-center">
             <p className="text-slate-500 text-sm">
               Don't have an account?{' '}
-              <Link to="/register" className="text-indigo-600 font-bold hover:underline">
+              <Link to="/register" className="text-sky-600 font-bold hover:underline">
                 Register
               </Link>
             </p>
