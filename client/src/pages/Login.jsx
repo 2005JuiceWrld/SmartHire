@@ -55,10 +55,10 @@ const Login = () => {
         </div>
 
         <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-xl">
-          <h2 className="text-2xl font-bold text-slate-800 mb-2 mr-auto">
+          <h2 className="text-2xl font-bold text-slate-800 mb-2 text-center">
             {needsRoleSelection ? 'Select Role' : 'Welcome Back'}
           </h2>
-          <p className="text-slate-500 mb-8 mr-auto">
+          <p className="text-slate-500 mb-8 text-center">
             {needsRoleSelection 
               ? 'Multiple accounts found. How would you like to sign in?' 
               : 'Sign in to your account to continue'}
