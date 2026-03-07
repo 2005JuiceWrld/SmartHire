@@ -1,24 +1,38 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap");
 
 @theme {
-  --font-sans: "Inter", "system-ui", "Avenir", "Helvetica", "Arial", "sans-serif";
+  --font-sans: "Manrope", "Segoe UI", "system-ui", "sans-serif";
+  --color-primary: #2563EB;
+  --color-secondary: #1E40AF;
+  --color-neutral-bg: #DBEAFE;
+  --color-surface: #FFFFFF;
+  --color-text: #1F2937;
+  --color-border: #E5E7EB;
 }
 
 :root {
-  /* Darkened background and high-contrast text for better visibility on high brightness */
-  color: #0f172a; /* slate-900 */
-  background-color: #e2e8f0; /* slate-200 - darker background for better card separation */
+  color: #1F2937;
+  background-color: #DBEAFE;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  background-color: #DBEAFE;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  color: #020617; /* slate-950 - darker text */
-  background-color: #e2e8f0; /* slate-200 */
+  font-family: var(--font-sans);
+  color: #1F2937;
+  background-color: #DBEAFE;
   -webkit-font-smoothing: antialiased;
 }
 
 input, textarea, select {
-  color: #0f172a !important; /* Forces dark text in all inputs */
+  color: #1F2937 !important;
 }

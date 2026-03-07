@@ -72,12 +72,17 @@ export const login = async (req, res, next) => {
 
     // If multiple roles exist and user hasn't selected one yet
     if (usersFound.length > 1 && !role) {
-      return res.status(200).json({
-        success: true,
-        needsRoleSelection: true,
-        roles: usersFound.map(u => u.role),
-        message: "Multiple accounts found. Please select your role."
-      });
+      // Deduplicate roles to prevent repeated options
+      const uniqueRoles = [...new Set(usersFound.map(u => u.role))];
+      
+      if (uniqueRoles.length > 1) {
+        return res.status(200).json({
+          success: true,
+          needsRoleSelection: true,
+          roles: uniqueRoles,
+          message: "Multiple accounts found. Please select your role."
+        });
+      }
     }
 
     // Find the specific user (either the only one, or the one with the selected role)

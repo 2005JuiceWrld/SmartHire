@@ -329,7 +329,7 @@ export const updateUser = async (req, res, next) => {
     user.password = undefined;
 
     res.status(200).json({
-      sucess: true,
+      success: true,
       message: "User updated successfully",
       user,
       token,

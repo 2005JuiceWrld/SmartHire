@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Island from '../components/Island';
+import Card from '../../components/common/Card';
+import Button from '../../components/common/Button';
+import LoadingSpinner from '../../components/common/LoadingSpinner';
 import { 
   Upload, 
   FileText, 
   CheckCircle, 
   AlertCircle, 
-  Loader2, 
   Star, 
   TrendingUp, 
   Zap,
@@ -81,7 +82,7 @@ const ResumeAnalysis = () => {
   };
 
   return (
-    <Island className="max-w-6xl mx-auto space-y-12 animate-in fade-in duration-500 pb-20">
+    <div className="max-w-6xl mx-auto space-y-12 animate-in fade-in duration-500 pb-20">
       {/* Header */}
       <div className="text-center space-y-2">
         <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight">AI Resume Intelligence</h1>
@@ -90,7 +91,7 @@ const ResumeAnalysis = () => {
 
       {/* Upload Area */}
       {!result && (
-        <div className="bg-slate-50 p-10 rounded-[2rem] border-2 border-dashed border-slate-200 shadow-sm text-center transition-all hover:border-indigo-400 group">
+        <div className="bg-slate-50 p-10 rounded-[2rem] border-2 border-dashed border-slate-200 shadow-sm text-center transition-all hover:border-blue-400 group">
           <input 
             type="file" 
             id="resume-upload" 
@@ -99,7 +100,7 @@ const ResumeAnalysis = () => {
             onChange={handleFileChange}
           />
           <label htmlFor="resume-upload" className="cursor-pointer flex flex-col items-center">
-            <div className="w-20 h-20 bg-white text-indigo-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm">
+            <div className="w-20 h-20 bg-white text-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm">
               <Upload size={40} />
             </div>
             <h3 className="text-xl font-bold text-slate-800 mb-2">
@@ -115,11 +116,11 @@ const ResumeAnalysis = () => {
                 }
               }}
               disabled={!file || analyzing}
-              className="bg-indigo-600 text-white px-10 py-3.5 rounded-2xl font-bold hover:bg-indigo-700 disabled:bg-slate-200 transition-all flex items-center gap-2 shadow-lg shadow-indigo-100"
+              className="bg-blue-600 text-white px-10 py-3.5 rounded-2xl font-bold hover:bg-blue-700 disabled:bg-slate-200 transition-all flex items-center gap-2 shadow-lg shadow-blue-100"
             >
               {analyzing ? (
                 <>
-                  <Loader2 className="animate-spin" size={20} />
+                  <LoadingSpinner size="sm" color="white" />
                   Analyzing Resume...
                 </>
               ) : (
@@ -163,12 +164,12 @@ const ResumeAnalysis = () => {
             </div>
             
             <div className="flex-1 space-y-4 text-center md:text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-white text-green-700 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm border border-green-100">
-                <Star size={14} className="fill-green-500" /> AI Analysis Complete
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-white text-blue-700 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm border border-blue-100">
+                <Star size={14} className="fill-blue-500" /> AI Analysis Complete
               </div>
               <h2 className="text-2xl font-bold text-slate-900">General Resume Analysis</h2>
               <p className="text-slate-500">We've identified {result.skills?.length || 8} skills and {result.education?.length || 1} credentials. See below for job-specific matching.</p>
-              <button onClick={() => setResult(null)} className="text-sm font-bold text-indigo-600 hover:underline flex items-center gap-1 mx-auto md:mx-0">
+              <button onClick={() => setResult(null)} className="text-sm font-bold text-blue-600 hover:underline flex items-center gap-1 mx-auto md:mx-0">
                 Upload a different resume <ArrowRight size={16} />
               </button>
             </div>
@@ -178,12 +179,12 @@ const ResumeAnalysis = () => {
             {/* Strengths */}
             <div className="bg-slate-50 p-6 rounded-[2rem] border border-slate-200 shadow-sm space-y-4">
               <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2 px-2">
-                <CheckCircle className="text-green-500" /> Key Strengths
+                <CheckCircle className="text-blue-500" /> Key Strengths
               </h3>
               <div className="space-y-3">
                 {(result.keyStrengths?.length > 0 ? result.keyStrengths : ["Strong technical foundation", "Relevant educational background", "Professional formatting"]).map((s, i) => (
                   <div key={i} className="flex gap-3 p-4 bg-white rounded-2xl border border-slate-100 shadow-sm">
-                    <div className="w-5 h-5 bg-green-500 text-white rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="w-5 h-5 bg-blue-500 text-white rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                       <CheckCircle size={12} />
                     </div>
                     <p className="text-sm text-slate-700 font-medium">{s}</p>
@@ -195,12 +196,12 @@ const ResumeAnalysis = () => {
             {/* General Improvements */}
             <div className="bg-slate-50 p-6 rounded-[2rem] border border-slate-200 shadow-sm space-y-4">
               <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2 px-2">
-                <Target className="text-orange-500" /> Improvement Suggestions
+                <Target className="text-blue-500" /> Improvement Suggestions
               </h3>
               <div className="space-y-3">
                 {(result.improvementSuggestions?.length > 0 ? result.improvementSuggestions : ["Add more cloud-native skills", "Quantify achievement metrics", "Include personal projects link"]).map((s, i) => (
                   <div key={i} className="flex gap-3 p-4 bg-white rounded-2xl border border-slate-100 shadow-sm">
-                    <div className="w-5 h-5 bg-orange-500 text-white rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="w-5 h-5 bg-blue-500 text-white rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                       <TrendingUp size={12} />
                     </div>
                     <p className="text-sm text-slate-700 font-medium">{s}</p>
@@ -213,11 +214,11 @@ const ResumeAnalysis = () => {
           {/* Identified Skills Grid */}
           <div className="bg-slate-50 p-8 rounded-[2rem] border border-slate-200 shadow-sm space-y-6">
             <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-              <Zap className="text-indigo-500" /> Skills Found in Resume
+              <Zap className="text-blue-500" /> Skills Found in Resume
             </h3>
             <div className="flex flex-wrap gap-3">
               {(result.skills?.length > 0 ? result.skills : ["React", "JavaScript", "Node.js", "Python", "MongoDB", "Tailwind CSS", "Git"]).map((skill) => (
-                <span key={skill} className="px-4 py-2 bg-white text-indigo-700 rounded-xl text-sm font-bold border border-slate-200 shadow-sm">
+                <span key={skill} className="px-4 py-2 bg-white text-blue-700 rounded-xl text-sm font-bold border border-slate-200 shadow-sm">
                   {skill}
                 </span>
               ))}
@@ -225,15 +226,15 @@ const ResumeAnalysis = () => {
           </div>
 
           {/* Job Match Section */}
-          <div className="bg-slate-900 rounded-[2.5rem] p-10 text-white shadow-2xl space-y-8 relative overflow-hidden">
+          <div className="bg-blue-100 rounded-[2.5rem] p-10 text-slate-900 shadow-sm border border-blue-200 space-y-8 relative overflow-hidden">
             <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div className="flex items-center gap-4">
-                <div className="p-3 bg-indigo-500 rounded-2xl shadow-lg shadow-indigo-500/20">
+                <div className="p-3 bg-blue-500 rounded-2xl shadow-lg shadow-blue-500/20">
                   <Briefcase size={28} />
                 </div>
                 <div>
                   <h2 className="text-3xl font-bold">Job Description Matcher</h2>
-                  <p className="text-slate-400 text-sm mt-1">Check your compatibility with any job requirements instantly.</p>
+                  <p className="text-slate-600 text-sm mt-1">Check your compatibility with any job requirements instantly.</p>
                 </div>
               </div>
             </div>
@@ -244,42 +245,42 @@ const ResumeAnalysis = () => {
                 onChange={(e) => setJobDescription(e.target.value)}
                 placeholder="Paste the job description here..."
                 rows={6}
-                className="w-full bg-slate-800 border border-slate-700 rounded-[1.5rem] p-6 text-white placeholder:text-slate-500 focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-lg"
+                className="w-full bg-white border border-blue-200 rounded-[1.5rem] p-6 text-slate-900 placeholder:text-slate-500 focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all text-lg"
               />
               <button 
                 onClick={handleJobMatch}
                 disabled={!jobDescription || matching}
-                className="w-full bg-indigo-600 hover:bg-indigo-700 py-5 rounded-[1.5rem] font-bold text-lg flex items-center justify-center gap-3 transition-all disabled:bg-slate-700 shadow-xl shadow-indigo-600/20"
+                className="w-full bg-blue-600 text-white hover:bg-blue-700 py-5 rounded-[1.5rem] font-bold text-lg flex items-center justify-center gap-3 transition-all disabled:bg-slate-300 shadow-xl shadow-blue-600/20"
               >
-                {matching ? <Loader2 className="animate-spin" size={24} /> : <Search size={24} />}
+                {matching ? <LoadingSpinner size="sm" color="white" /> : <Search size={24} />}
                 {matching ? 'Calculating Match...' : 'Analyze Job Match'}
               </button>
             </div>
 
             {/* Match Results */}
             {matchResult && (
-              <div className="relative z-10 pt-10 border-t border-slate-800 grid grid-cols-1 md:grid-cols-3 gap-6 animate-in fade-in zoom-in duration-500">
-                <div className="bg-slate-800/50 p-6 rounded-[2rem] text-center space-y-2 border border-slate-700">
-                  <p className="text-slate-400 text-xs font-bold uppercase tracking-widest">Match Score</p>
-                  <h3 className={`text-5xl font-black ${matchResult.matchScore > 70 ? 'text-green-400' : 'text-orange-400'}`}>
+              <div className="relative z-10 pt-10 border-t border-blue-200 grid grid-cols-1 md:grid-cols-3 gap-6 animate-in fade-in zoom-in duration-500">
+                <div className="bg-white p-6 rounded-[2rem] text-center space-y-2 border border-blue-200">
+                  <p className="text-slate-500 text-xs font-bold uppercase tracking-widest">Match Score</p>
+                  <h3 className={`text-5xl font-black ${matchResult.matchScore > 70 ? 'text-blue-400' : 'text-blue-400'}`}>
                     {matchResult.matchScore}%
                   </h3>
                 </div>
                 
-                <div className="bg-slate-800/50 p-6 rounded-[2rem] space-y-4 border border-slate-700">
-                  <p className="text-slate-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
-                    <CheckCircle size={14} className="text-green-400" /> Matching Skills
+                <div className="bg-white p-6 rounded-[2rem] space-y-4 border border-blue-200">
+                  <p className="text-slate-500 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                    <CheckCircle size={14} className="text-blue-400" /> Matching Skills
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {matchResult.matchingSkills?.map(s => (
-                      <span key={s} className="px-3 py-1 bg-green-400/10 text-green-400 rounded-lg text-xs font-bold border border-green-400/20">{s}</span>
+                      <span key={s} className="px-3 py-1 bg-blue-400/10 text-blue-400 rounded-lg text-xs font-bold border border-blue-400/20">{s}</span>
                     ))}
                     {matchResult.matchingSkills?.length === 0 && <span className="text-slate-500 text-xs italic">None detected</span>}
                   </div>
                 </div>
 
-                <div className="bg-slate-800/50 p-6 rounded-[2rem] space-y-4 border border-slate-700">
-                  <p className="text-slate-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                <div className="bg-white p-6 rounded-[2rem] space-y-4 border border-blue-200">
+                  <p className="text-slate-500 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
                     <Target size={14} className="text-red-400" /> Missing Skills
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -290,14 +291,14 @@ const ResumeAnalysis = () => {
                   </div>
                 </div>
 
-                <div className="md:col-span-3 bg-indigo-600/10 border border-indigo-500/20 p-8 rounded-[2rem] space-y-4">
-                  <p className="text-indigo-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
-                    <Zap size={14} className="fill-indigo-400" /> AI Career Advice
+                <div className="md:col-span-3 bg-white border border-blue-200 p-8 rounded-[2rem] space-y-4">
+                  <p className="text-blue-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                    <Zap size={14} className="fill-blue-400" /> AI Career Advice
                   </p>
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {matchResult.improvementSuggestions?.map((s, i) => (
-                      <li key={i} className="text-sm text-indigo-100 flex items-start gap-3 bg-white/5 p-4 rounded-xl border border-white/5">
-                        <ArrowRight size={16} className="mt-0.5 flex-shrink-0 text-indigo-400" /> {s}
+                      <li key={i} className="text-sm text-slate-700 flex items-start gap-3 bg-blue-50 p-4 rounded-xl border border-blue-100">
+                        <ArrowRight size={16} className="mt-0.5 flex-shrink-0 text-blue-400" /> {s}
                       </li>
                     ))}
                   </ul>
@@ -306,12 +307,12 @@ const ResumeAnalysis = () => {
             )}
             
             {/* Background Accent */}
-            <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-indigo-600/20 rounded-full blur-[100px] -z-0"></div>
+            <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-600/20 rounded-full blur-[100px] -z-0"></div>
             <div className="absolute -left-20 -top-20 w-80 h-80 bg-blue-600/10 rounded-full blur-[100px] -z-0"></div>
           </div>
         </div>
       )}
-    </Island>
+    </div>
   );
 };
 

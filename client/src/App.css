@@ -1,6 +1,7 @@
-/* Reset default Vite styles for the SaaS Dashboard */
 #root {
   width: 100%;
   margin: 0;
   padding: 0;
+  min-height: 100vh;
+  background-color: #DBEAFE;
 }

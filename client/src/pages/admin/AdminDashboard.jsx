@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Island from '../../components/Island';
-import { 
-  Users, 
-  Briefcase, 
-  FileText, 
-  UserPlus, 
-  TrendingUp, 
+import Card from '../../components/common/Card';
+import LoadingSpinner from '../../components/common/LoadingSpinner';
+import {
+  Users,
+  Briefcase,
+  FileText,
+  UserPlus,
+  TrendingUp,
   ChevronRight,
-  ShieldAlert
+  ShieldAlert,
+  Activity
 } from 'lucide-react';
 
 const AdminDashboard = () => {
@@ -22,7 +24,7 @@ const AdminDashboard = () => {
         const res = await axios.get('http://localhost:8800/api/admin/stats');
         setStats(res.data.stats);
       } catch (err) {
-        console.error("Error fetching admin stats", err);
+        console.error('Error fetching admin stats', err);
       } finally {
         setLoading(false);
       }
@@ -30,88 +32,86 @@ const AdminDashboard = () => {
     fetchStats();
   }, []);
 
-  if (loading) return (
-    <div className="flex items-center justify-center h-[60vh]">
-      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
-    </div>
-  );
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center h-[60vh] gap-3">
+        <LoadingSpinner size="lg" />
+        <p className="text-sm text-slate-600">Loading dashboard data...</p>
+      </div>
+    );
+  }
 
   const statCards = [
-    { title: 'Total Users', value: stats?.totalUsers || 0, icon: Users, color: 'text-blue-600', bg: 'bg-blue-50' },
-    { title: 'Candidates', value: stats?.totalCandidates || 0, icon: UserPlus, color: 'text-emerald-600', bg: 'bg-emerald-50' },
-    { title: 'Recruiters', value: stats?.totalRecruiters || 0, icon: Briefcase, color: 'text-purple-600', bg: 'bg-purple-50' },
-    { title: 'Jobs Posted', value: stats?.totalJobs || 0, icon: TrendingUp, color: 'text-orange-600', bg: 'bg-orange-50' },
-    { title: 'Resumes Analyzed', value: stats?.totalResumesAnalyzed || 0, icon: FileText, color: 'text-indigo-600', bg: 'bg-indigo-50' },
+    { title: 'Total Users', value: stats?.totalUsers || 0, icon: Users },
+    { title: 'Candidates', value: stats?.totalCandidates || 0, icon: UserPlus },
+    { title: 'Recruiters', value: stats?.totalRecruiters || 0, icon: Briefcase },
+    { title: 'Jobs Posted', value: stats?.totalJobs || 0, icon: TrendingUp },
+    { title: 'Resumes Analyzed', value: stats?.totalResumesAnalyzed || 0, icon: FileText }
   ];
 
   const sections = [
     {
       title: 'User Management',
-      description: 'View, edit, and moderate user accounts across the platform.',
+      description: 'View and moderate user accounts.',
       icon: Users,
-      link: '/admin/users',
-      color: 'text-blue-600',
-      bg: 'bg-blue-50'
+      link: '/admin/users'
     },
     {
-      title: 'Job Post Management',
-      description: 'Review and moderate job listings posted by recruiters.',
+      title: 'Job Management',
+      description: 'Review and moderate job postings.',
       icon: Briefcase,
-      link: '/admin/jobs',
-      color: 'text-purple-600',
-      bg: 'bg-purple-50'
+      link: '/admin/jobs'
     },
     {
-      title: 'Reports / Moderation',
-      description: 'Handle reported content and platform-wide moderation tasks.',
+      title: 'System Moderation',
+      description: 'Handle reports and moderation tasks.',
       icon: ShieldAlert,
-      link: '#', // Placeholder for now
-      color: 'text-red-600',
-      bg: 'bg-red-50'
+      link: '#'
     }
   ];
 
   return (
-    <Island className="max-w-7xl mx-auto space-y-12 animate-in fade-in duration-700">
+    <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Admin Dashboard</h1>
-        <p className="text-slate-500 mt-1">Platform overview and management tools.</p>
+        <h1 className="text-2xl font-semibold text-slate-900 flex items-center gap-2">
+          <Activity size={20} className="text-slate-700" />
+          Admin Dashboard
+        </h1>
+        <p className="text-sm text-slate-600 mt-1">Platform overview and management tools.</p>
       </div>
 
-      {/* Stats Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-        {statCards.map((card, idx) => (
-          <div key={idx} className="bg-white p-6 rounded-3xl border border-slate-300 shadow-sm transition-all group">
-            <div className={`w-12 h-12 rounded-xl ${card.bg} ${card.color} flex items-center justify-center mb-4 border border-slate-100`}>
-                <card.icon size={24} />
-            </div>
-            <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">{card.title}</p>
-            <h3 className="text-2xl font-black text-slate-900 mt-1">{card.value}</h3>
-          </div>
-        ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        {statCards.map((card, idx) => {
+          const Icon = card.icon;
+          return (
+            <Card key={idx}>
+              <Icon size={18} className="text-slate-600 mb-3" />
+              <p className="text-sm text-slate-600">{card.title}</p>
+              <h3 className="text-2xl font-semibold text-slate-900 mt-1">{card.value}</h3>
+            </Card>
+          );
+        })}
       </div>
 
-      {/* Management Sections */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {sections.map((section, idx) => (
-          <Link 
-            key={idx} 
-            to={section.link}
-            className="bg-white p-8 rounded-[2.5rem] border border-slate-300 shadow-sm hover:shadow-xl hover:border-indigo-200 transition-all group flex flex-col"
-          >
-            <div className={`w-16 h-16 rounded-2xl ${section.bg} ${section.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-              <section.icon size={32} />
-            </div>
-            <h3 className="text-xl font-black text-slate-900 mb-2 uppercase tracking-tight">{section.title}</h3>
-            <p className="text-slate-500 font-medium mb-8 flex-1">{section.description}</p>
-            <div className="flex items-center gap-2 text-indigo-600 font-black text-sm uppercase tracking-widest">
-              Manage Now
-              <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </div>
-          </Link>
-        ))}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        {sections.map((section, idx) => {
+          const Icon = section.icon;
+          return (
+            <Link key={idx} to={section.link} className="flex h-full">
+              <Card className="w-full flex flex-col">
+                <Icon size={20} className="text-slate-700 mb-3" />
+                <h3 className="text-lg font-medium text-slate-900">{section.title}</h3>
+                <p className="text-sm text-slate-600 mt-1 flex-1">{section.description}</p>
+                <div className="flex items-center gap-1 text-sm text-slate-700 mt-4">
+                  Open
+                  <ChevronRight size={14} />
+                </div>
+              </Card>
+            </Link>
+          );
+        })}
       </div>
-    </Island>
+    </div>
   );
 };
 

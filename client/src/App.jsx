@@ -1,21 +1,20 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
-import Layout from './components/Layout';
-import Dashboard from './pages/Dashboard';
-import Profile from './pages/Profile';
-import Connections from './pages/Connections';
-import ResumeAnalysis from './pages/ResumeAnalysis';
-// import Recruiter from './pages/Recruiter'; // Replaced by RecruiterDashboard
-import RecruiterSearch from './pages/RecruiterSearch';
-import RecruiterDashboard from './pages/RecruiterDashboard';
-import CreateJob from './pages/CreateJob';
-import MyJobs from './pages/MyJobs';
-import JobMatches from './pages/JobMatches';
-import Notifications from './pages/Notifications';
-import Settings from './pages/Settings';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import Layout from './components/layout/Layout';
+import Dashboard from './pages/candidate/Dashboard';
+import Profile from './pages/candidate/Profile';
+import Connections from './pages/candidate/Connections';
+import ResumeAnalysis from './pages/candidate/ResumeAnalysis';
+import RecruiterSearch from './pages/recruiter/RecruiterSearch';
+import RecruiterDashboard from './pages/recruiter/RecruiterDashboard';
+import CreateJob from './pages/recruiter/CreateJob';
+import MyJobs from './pages/recruiter/MyJobs';
+import JobMatches from './pages/recruiter/JobMatches';
+import Notifications from './pages/shared/Notifications';
+import Settings from './pages/shared/Settings';
+import Login from './pages/auth/Login';
+import Register from './pages/auth/Register';
 
 // Admin Pages
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -34,8 +33,11 @@ const ProtectedRoute = ({ allowedRoles }) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50 font-bold text-indigo-600">
-        Loading SmartHire...
+      <div className="min-h-screen flex items-center justify-center bg-[#DBEAFE] text-slate-700">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-sm font-medium">Loading SmartHire...</p>
+        </div>
       </div>
     );
   }
@@ -66,8 +68,11 @@ function AppContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50 font-bold text-indigo-600">
-        Initializing...
+      <div className="min-h-screen flex items-center justify-center bg-[#DBEAFE] text-slate-700">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-sm font-medium">Initializing SmartHire...</p>
+        </div>
       </div>
     );
   }

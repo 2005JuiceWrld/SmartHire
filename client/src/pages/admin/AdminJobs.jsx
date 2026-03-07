@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Island from '../../components/Island';
-import { Trash2, Briefcase, User, MapPin } from 'lucide-react';
+import Card from '../../components/common/Card';
+import Button from '../../components/common/Button';
+import Badge from '../../components/common/Badge';
+import LoadingSpinner from '../../components/common/LoadingSpinner';
+import { Trash2, Briefcase, User, MapPin, Search, Filter } from 'lucide-react';
 
 const AdminJobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -23,89 +26,98 @@ const AdminJobs = () => {
   };
 
   const handleDeleteJob = async (jobId) => {
-    if (!window.confirm("Are you sure you want to delete this job listing?")) return;
+    if (!window.confirm("Are you sure you want to delete this job listing? This protocol is irreversible.")) return;
     
     try {
       await axios.delete(`http://localhost:8800/api/admin/jobs/${jobId}`);
-      fetchJobs(); // Refresh list
+      fetchJobs();
     } catch (err) {
       console.error("Error deleting job", err);
-      alert("Failed to delete job.");
+      alert("System failed to execute delete operation.");
     }
   };
 
   if (loading) return (
-    <div className="flex items-center justify-center h-[60vh]">
-      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+    <div className="flex flex-col items-center justify-center h-[60vh] gap-4">
+      <LoadingSpinner size="lg" />
+      <p className="text-slate-500 font-bold animate-pulse">Scanning Platform Marketplace...</p>
     </div>
   );
 
   return (
-    <Island className="max-w-7xl mx-auto space-y-8 animate-in fade-in duration-700">
-      <div>
-        <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Job Management</h1>
-        <p className="text-slate-500 mt-1">Manage and moderate all job listings posted on SmartHire.</p>
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 px-2">
+        <div>
+          <h1 className="text-3xl font-black text-slate-900 tracking-tight">Marketplace Governance</h1>
+          <p className="text-slate-500 font-semibold mt-1">Audit and moderate global job listings within the SmartHire network.</p>
+        </div>
+        <div className="flex gap-3">
+          <Button variant="outline" icon={Filter} size="sm">Advanced Audit</Button>
+        </div>
       </div>
 
-      <div className="bg-white rounded-3xl border border-slate-300 shadow-sm overflow-hidden">
+      <Card noPadding className="border-none shadow-2xl shadow-slate-100 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left">
             <thead>
-              <tr className="bg-slate-50 border-b border-slate-300">
-                <th className="px-8 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Job Title</th>
-                <th className="px-8 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Recruiter</th>
-                <th className="px-8 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Location</th>
-                <th className="px-8 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Status</th>
-                <th className="px-8 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Actions</th>
+              <tr className="bg-slate-50/80 border-b border-slate-100">
+                <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Deployment Identity</th>
+                <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Originating Recruiter</th>
+                <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Geographic Hub</th>
+                <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Network Status</th>
+                <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] text-right">Moderation Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
               {jobs.map((job) => (
-                <tr key={job._id} className="hover:bg-slate-50/50 transition-colors">
-                  <td className="px-8 py-5">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-600 border border-slate-200">
-                        <Briefcase size={20} />
+                <tr key={job._id} className="hover:bg-slate-50/50 transition-all group">
+                  <td className="px-8 py-6">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-2xl bg-blue-100 flex items-center justify-center text-blue-700 border-2 border-white shadow-lg shadow-slate-200 group-hover:bg-blue-200 transition-colors">
+                        <Briefcase size={22} />
                       </div>
-                      <span className="font-bold text-slate-800">{job.title}</span>
+                      <div>
+                        <span className="font-black text-slate-900 block group-hover:text-blue-600 transition-colors">{job.title}</span>
+                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">ID: {job._id.slice(-8)}</span>
+                      </div>
                     </div>
                   </td>
-                  <td className="px-8 py-5">
-                    <div className="flex items-center gap-2">
-                      <User size={16} className="text-slate-400" />
-                      <span className="text-slate-600 font-medium">
+                  <td className="px-8 py-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 font-black text-xs border border-blue-100">
+                        {job.recruiterId?.firstName[0]}{job.recruiterId?.lastName[0]}
+                      </div>
+                      <span className="text-slate-600 font-bold text-sm">
                         {job.recruiterId?.firstName} {job.recruiterId?.lastName}
                       </span>
                     </div>
                   </td>
-                  <td className="px-8 py-5">
-                    <div className="flex items-center gap-2">
-                      <MapPin size={16} className="text-slate-400" />
-                      <span className="text-slate-600 font-medium">{job.location}</span>
+                  <td className="px-8 py-6">
+                    <div className="flex items-center gap-2 text-slate-500 font-bold text-sm">
+                      <MapPin size={16} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
+                      {job.location}
                     </div>
                   </td>
-                  <td className="px-8 py-5">
-                    <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase ${
-                      job.status === 'Active' ? 'bg-green-50 text-green-600 border border-green-100' : 'bg-slate-100 text-slate-600'
-                    }`}>
+                  <td className="px-8 py-6">
+                    <Badge variant={job.status === 'Active' ? 'success' : 'secondary'} dot className="font-black py-1.5 px-4">
                       {job.status}
-                    </span>
+                    </Badge>
                   </td>
-                  <td className="px-8 py-5 text-right">
-                    <button 
+                  <td className="px-8 py-6 text-right">
+                    <Button 
+                      variant="ghost" 
                       onClick={() => handleDeleteJob(job._id)}
-                      className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all border border-transparent hover:border-red-100"
-                    >
-                      <Trash2 size={20} />
-                    </button>
+                      className="text-slate-400 hover:text-red-600 hover:bg-red-50 border border-transparent hover:border-red-100 p-2.5"
+                      icon={Trash2}
+                    />
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-      </div>
-    </Island>
+      </Card>
+    </div>
   );
 };
 
