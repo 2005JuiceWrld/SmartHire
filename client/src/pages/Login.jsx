@@ -48,8 +48,12 @@ const Login = () => {
     <div className="min-h-screen bg-slate-50 flex flex-col justify-center items-center p-6">
       <div className="w-full max-w-md">
         <div className="flex items-center justify-center gap-3 mb-8">
-          <div className="bg-sky-500 p-2 rounded-md text-white">
-            <Share2 size={32} />
+          <div className="w-10 h-10 flex items-center justify-center">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2Fb4e372bd30c641588bf37e96a1f5ff16%2F35803bcd13954b6086d50a91dc9dee71"
+              alt="SmartHire Logo"
+              className="w-full h-full object-contain"
+            />
           </div>
           <h1 className="text-3xl font-bold text-slate-900 tracking-tight">SmartHire</h1>
         </div>

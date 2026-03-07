@@ -75,13 +75,17 @@ const Register = () => {
     <div className="min-h-screen bg-slate-50 flex flex-col justify-center items-center p-6">
       <div className="w-full max-w-md">
         <div className="flex items-center justify-center gap-3 mb-8">
-          <div className="bg-indigo-600 p-2 rounded-xl text-white">
-            <Share2 size={32} />
+          <div className="w-10 h-10 flex items-center justify-center">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2Fb4e372bd30c641588bf37e96a1f5ff16%2F35803bcd13954b6086d50a91dc9dee71"
+              alt="SmartHire Logo"
+              className="w-full h-full object-contain"
+            />
           </div>
           <h1 className="text-3xl font-bold text-slate-900 tracking-tight">SmartHire</h1>
         </div>
 
-        <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-xl">
+        <div className="bg-white p-8 rounded-lg border border-slate-200 shadow-xl">
           <h2 className="text-2xl font-bold text-slate-800 mb-2">Create Account</h2>
           <p className="text-slate-500 mb-6">Join the community and boost your career</p>
 
@@ -92,9 +96,9 @@ const Register = () => {
                 <button
                     type="button"
                     onClick={() => handleRoleChange('candidate')}
-                    className={`flex-1 py-3 px-4 rounded-xl border flex items-center justify-center gap-2 transition-all ${
-                        formData.role === 'candidate' 
-                        ? 'bg-indigo-50 border-indigo-500 text-indigo-700 ring-1 ring-indigo-500' 
+                    className={`flex-1 py-3 px-4 rounded-md border flex items-center justify-center gap-2 transition-all ${
+                        formData.role === 'candidate'
+                        ? 'bg-sky-50 border-sky-500 text-sky-700 ring-1 ring-sky-500'
                         : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'
                     }`}
                 >
@@ -104,9 +108,9 @@ const Register = () => {
                 <button
                     type="button"
                     onClick={() => handleRoleChange('recruiter')}
-                    className={`flex-1 py-3 px-4 rounded-xl border flex items-center justify-center gap-2 transition-all ${
-                        formData.role === 'recruiter' 
-                        ? 'bg-indigo-50 border-indigo-500 text-indigo-700 ring-1 ring-indigo-500' 
+                    className={`flex-1 py-3 px-4 rounded-md border flex items-center justify-center gap-2 transition-all ${
+                        formData.role === 'recruiter'
+                        ? 'bg-sky-50 border-sky-500 text-sky-700 ring-1 ring-sky-500'
                         : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'
                     }`}
                 >
@@ -126,7 +130,7 @@ const Register = () => {
                     required
                     value={formData.firstName}
                     onChange={handleChange}
-                    className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                    className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-md focus:ring-2 focus:ring-sky-500 outline-none transition-all"
                     placeholder="John"
                   />
                 </div>
@@ -139,7 +143,7 @@ const Register = () => {
                   required
                   value={formData.lastName}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-md focus:ring-2 focus:ring-sky-500 outline-none transition-all"
                   placeholder="Doe"
                 />
               </div>
@@ -155,7 +159,7 @@ const Register = () => {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                  className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-md focus:ring-2 focus:ring-sky-500 outline-none transition-all"
                   placeholder="john@example.com"
                 />
               </div>
@@ -171,7 +175,7 @@ const Register = () => {
                       type="text"
                       value={formData.skills}
                       onChange={handleChange}
-                      className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                      className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-md focus:ring-2 focus:ring-sky-500 outline-none transition-all"
                       placeholder="React, Node.js, Python, SQL"
                     />
                   </div>
@@ -188,7 +192,7 @@ const Register = () => {
                   required
                   value={formData.password}
                   onChange={handleChange}
-                  className="w-full pl-10 pr-12 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                  className="w-full pl-10 pr-12 py-3 bg-slate-50 border border-slate-200 rounded-md focus:ring-2 focus:ring-sky-500 outline-none transition-all"
                   placeholder="••••••••"
                 />
                 <button
@@ -202,7 +206,7 @@ const Register = () => {
             </div>
 
             {error && (
-              <div className="p-3 bg-red-50 text-red-600 text-sm font-medium rounded-lg border border-red-100">
+              <div className="p-3 bg-red-50 text-red-600 text-sm font-medium rounded-md border border-red-100">
                 {error}
               </div>
             )}
@@ -210,7 +214,7 @@ const Register = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-indigo-600 text-white py-3 rounded-xl font-bold hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2 mt-4"
+              className="w-full bg-sky-500 text-white py-3 rounded-md font-bold hover:bg-sky-600 transition-colors flex items-center justify-center gap-2 mt-4"
             >
               {loading ? <Loader2 className="animate-spin" size={20} /> : 'Create Account'}
             </button>
@@ -219,7 +223,7 @@ const Register = () => {
           <div className="mt-8 pt-6 border-t border-slate-100 text-center">
             <p className="text-slate-500 text-sm">
               Already have an account?{' '}
-              <Link to="/login" className="text-indigo-600 font-bold hover:underline">
+              <Link to="/login" className="text-sky-600 font-bold hover:underline">
                 Sign In
               </Link>
             </p>

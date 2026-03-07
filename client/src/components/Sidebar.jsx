@@ -52,8 +52,12 @@ const Sidebar = () => {
   return (
     <aside className="fixed left-0 top-0 h-screen w-64 bg-white z-50 flex flex-col border-r border-slate-300 shadow-sm">
       <div className="p-8 flex items-center gap-3">
-        <div className="bg-indigo-600 p-2 rounded-xl text-white shadow-lg shadow-indigo-100">
-          <Share2 size={24} />
+        <div className="w-8 h-8 flex items-center justify-center">
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets%2Fb4e372bd30c641588bf37e96a1f5ff16%2F35803bcd13954b6086d50a91dc9dee71"
+            alt="SmartHire Logo"
+            className="w-full h-full object-contain"
+          />
         </div>
         <h1 className="text-xl font-bold text-slate-900 tracking-tight">SmartHire</h1>
       </div>
@@ -64,16 +68,16 @@ const Sidebar = () => {
             key={item.name}
             to={item.path}
             className={({ isActive }) =>
-              `flex items-center gap-3 px-6 py-3 rounded-xl transition-all duration-200 border ${
-                isActive
-                  ? 'bg-indigo-50 text-indigo-700 font-bold border-indigo-100 shadow-sm'
-                  : 'text-slate-600 border-transparent hover:bg-slate-50 hover:border-slate-100 hover:text-slate-900'
-              }`
-            }
+            `flex items-center gap-3 px-6 py-3 rounded-md transition-all duration-200 border ${
+              isActive
+                ? 'bg-sky-50 text-sky-700 font-bold border-sky-100 shadow-sm'
+                : 'text-slate-600 border-transparent hover:bg-slate-50 hover:border-slate-100 hover:text-slate-900'
+            }`
+          }
           >
             {({ isActive }) => (
               <>
-                <item.icon size={20} className={isActive ? 'text-indigo-600' : 'text-slate-400'} />
+                <item.icon size={20} className={isActive ? 'text-sky-600' : 'text-slate-400'} />
                 <span>{item.name}</span>
               </>
             )}
@@ -82,11 +86,11 @@ const Sidebar = () => {
       </nav>
 
       <div className="p-4 border-t border-slate-100">
-        <div className="bg-slate-50 rounded-2xl p-4 flex items-center gap-3 border border-slate-200">
+        <div className="bg-slate-50 rounded-lg p-4 flex items-center gap-3 border border-slate-200">
           {user?.profileUrl ? (
             <img src={user.profileUrl} alt="profile" className="w-10 h-10 rounded-full object-cover border border-white shadow-sm" />
           ) : (
-            <div className="w-10 h-10 rounded-full bg-white flex-shrink-0 flex items-center justify-center text-indigo-600 font-bold border border-slate-200 shadow-sm">
+            <div className="w-10 h-10 rounded-full bg-white flex-shrink-0 flex items-center justify-center text-sky-600 font-bold border border-slate-200 shadow-sm">
               {getInitials()}
             </div>
           )}
