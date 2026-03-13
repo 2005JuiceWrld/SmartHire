@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '../../components/common/Card';
 import Button from '../../components/common/Button';
 import EmptyState from '../../components/common/EmptyState';
-import { Users, UserPlus, Clock, Search } from 'lucide-react';
+import ThemeIcon from '../../components/common/ThemeIcon';
 
 const Connections = () => {
   return (
@@ -14,14 +14,14 @@ const Connections = () => {
         </div>
         <div className="flex items-center gap-3">
           <div className="relative group">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors" size={20} />
+            <ThemeIcon name="Search" className="absolute left-4 top-1/2 -translate-y-1/2 group-focus-within:brightness-90 transition-colors" size={20} />
             <input 
               type="text" 
               placeholder="Search people..." 
               className="pl-12 pr-6 py-3 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-blue-100 focus:border-blue-400 outline-none transition-all w-72 font-medium text-slate-700 shadow-sm"
             />
           </div>
-          <Button variant="primary" icon={UserPlus}>Find People</Button>
+          <Button variant="primary" icon={(props) => <ThemeIcon name="UserPlus" {...props} />}>Find People</Button>
         </div>
       </div>
 
@@ -30,7 +30,7 @@ const Connections = () => {
           <EmptyState 
             title="Your network is empty" 
             description="Start connecting with colleagues and professionals to see them here and expand your horizons."
-            icon={Users}
+            icon={(props) => <ThemeIcon name="Users" {...props} />}
             actionLabel="Discover Professionals"
             onAction={() => {}}
           />
@@ -39,7 +39,7 @@ const Connections = () => {
         <div className="space-y-6">
           <Card className="hover:border-blue-100">
             <h3 className="text-sm font-black text-slate-400 uppercase tracking-widest flex items-center gap-2 mb-6">
-              <UserPlus size={16} className="text-blue-600" />
+              <ThemeIcon name="UserPlus" size={16} />
               Pending Requests
             </h3>
             <div className="py-4 text-center">
@@ -49,7 +49,7 @@ const Connections = () => {
 
           <Card className="hover:border-blue-100">
             <h3 className="text-sm font-black text-slate-400 uppercase tracking-widest flex items-center gap-2 mb-6">
-              <Clock size={16} className="text-blue-600" />
+              <ThemeIcon name="Clock" size={16} />
               Recent Activity
             </h3>
             <div className="py-4 text-center">

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Briefcase, MapPin, Calendar, ArrowRight, ArrowLeft, PlusCircle, Sparkles } from 'lucide-react';
+import { Briefcase, MapPin, Calendar, ArrowLeft, PlusCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import Card from '../../components/common/Card';
 import Button from '../../components/common/Button';
@@ -118,7 +118,7 @@ const MyJobs = () => {
 
               <div className="bg-slate-50/50 p-6 border-t border-slate-100 group-hover:bg-blue-50/30 transition-colors mt-auto">
                 <Link to={`/recruiter/jobs/${job._id}/matches`}>
-                  <Button variant="primary" className="w-full font-black py-4 shadow-none" icon={Sparkles}>
+                  <Button variant="primary" className="w-full font-black py-4 shadow-none">
                       View AI Candidates
                   </Button>
                 </Link>

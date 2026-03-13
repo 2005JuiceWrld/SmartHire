@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Search, Bell, Menu, ChevronDown, User, LogOut, Settings } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
+import ThemeIcon from '../common/ThemeIcon';
 
 const Navbar = ({ onToggleSidebar }) => {
   const { user, logout } = useAuth();
@@ -16,12 +16,12 @@ const Navbar = ({ onToggleSidebar }) => {
         onClick={onToggleSidebar}
         className="lg:hidden p-2 rounded-md text-slate-600 hover:bg-blue-200 hover:text-slate-900"
       >
-        <Menu size={20} />
+        <ThemeIcon name="Menu" size={20} />
       </button>
 
       <div className="flex-1 max-w-xl hidden sm:block">
         <div className="relative group">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+          <ThemeIcon name="Search" className="absolute left-3 top-1/2 -translate-y-1/2" size={16} />
           <input
             type="text"
             placeholder="Search..."
@@ -32,7 +32,7 @@ const Navbar = ({ onToggleSidebar }) => {
 
       <div className="flex items-center gap-3">
         <button className="relative p-2 text-slate-600 hover:text-slate-900 hover:bg-blue-200 rounded-md transition-colors">
-          <Bell size={18} />
+          <ThemeIcon name="Bell" size={18} />
           <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-blue-600 rounded-full"></span>
         </button>
 
@@ -50,7 +50,7 @@ const Navbar = ({ onToggleSidebar }) => {
               <p className="text-xs font-semibold text-slate-900 leading-tight">{user?.firstName} {user?.lastName?.charAt(0)}.</p>
               <p className="text-[11px] text-slate-600 capitalize">{user?.role}</p>
             </div>
-            <ChevronDown size={14} className={`text-slate-500 transition-transform ${showProfileMenu ? 'rotate-180' : ''}`} />
+            <ThemeIcon name="ChevronDown" size={14} className={`transition-transform ${showProfileMenu ? 'rotate-180' : ''}`} />
           </button>
 
           {showProfileMenu && (
@@ -66,11 +66,11 @@ const Navbar = ({ onToggleSidebar }) => {
                 </div>
 
                 <Link to={profileRoute} className="flex items-center gap-2 px-3 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 text-sm">
-                  <User size={16} />
+                  <ThemeIcon name="UserCircle" size={16} />
                   My Profile
                 </Link>
                 <Link to="/settings" className="flex items-center gap-2 px-3 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-700 text-sm">
-                  <Settings size={16} />
+                  <ThemeIcon name="Settings" size={16} />
                   Settings
                 </Link>
 
@@ -80,7 +80,7 @@ const Navbar = ({ onToggleSidebar }) => {
                   onClick={logout}
                   className="w-full flex items-center gap-2 px-3 py-2 text-red-600 hover:bg-red-50 text-sm"
                 >
-                  <LogOut size={16} />
+                  <ThemeIcon name="LogOut" size={16} />
                   Sign Out
                 </button>
               </div>

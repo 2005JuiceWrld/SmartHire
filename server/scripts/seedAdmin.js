@@ -4,7 +4,7 @@ import Users from "../models/userModel.js";
 import { hashString } from "../utils/index.js";
 import dbConnection from "../dbConfig/index.js";
 
-dotenv.config({ path: "./server/.env" });
+dotenv.config();
 
 const seedAdmin = async () => {
   try {

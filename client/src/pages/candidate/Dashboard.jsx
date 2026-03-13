@@ -1,26 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useAuth } from '../../context/AuthContext';
-import {
-  TrendingUp,
-  Users,
-  Briefcase,
-  FileText,
-  Sparkles,
-  Clock,
-  CheckCircle2
-} from 'lucide-react';
 import Card from '../../components/common/Card';
 import Button from '../../components/common/Button';
 import Badge from '../../components/common/Badge';
+import ThemeIcon from '../../components/common/ThemeIcon';
+
+const stats = [
+  { icon: 'Briefcase', value: 12, label: 'Applications', change: '+12%' },
+  { icon: 'Users', value: 3, label: 'Interviews', change: '+12%' },
+  { icon: 'TrendingUp', value: 145, label: 'Profile Views', change: '+12%' },
+  { icon: 'Sparkles', value: '85%', label: 'Match Score', change: '+12%' }
+];
 
 const Dashboard = () => {
   const { user } = useAuth();
-  const [stats] = useState({
-    applications: 12,
-    interviews: 3,
-    profileViews: 145,
-    matchRate: 85
-  });
 
   const recentActivity = [
     { id: 1, title: 'Senior Frontend Engineer', company: 'Google', status: 'In Review', date: '2h ago' },
@@ -36,36 +29,28 @@ const Dashboard = () => {
           <p className="text-sm text-slate-600 mt-1">Here is your latest activity.</p>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" icon={FileText}>Update Resume</Button>
-          <Button icon={Sparkles}>Match Jobs</Button>
+          <Button variant="outline" icon={(props) => <ThemeIcon name="FileText" {...props} />}>Update Resume</Button>
+          <Button icon={(props) => <ThemeIcon name="Sparkles" {...props} />}>Match Jobs</Button>
         </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {[
-          { label: 'Applications', value: stats.applications, icon: Briefcase },
-          { label: 'Interviews', value: stats.interviews, icon: Users },
-          { label: 'Profile Views', value: stats.profileViews, icon: TrendingUp },
-          { label: 'Match Score', value: `${stats.matchRate}%`, icon: Sparkles }
-        ].map((stat, i) => {
-          const Icon = stat.icon;
-          return (
-            <Card key={i}>
-              <div className="flex items-center justify-between mb-3">
-                <Icon size={18} className="text-slate-600" />
-                <Badge variant="success" dot>+12%</Badge>
-              </div>
-              <p className="text-2xl font-semibold text-slate-900">{stat.value}</p>
-              <p className="text-sm text-slate-600 mt-1">{stat.label}</p>
-            </Card>
-          );
-        })}
+        {stats.map((stat, i) => (
+          <Card key={i} className="p-6 border-[#7DD3FC] bg-[#F0F9FF]">
+            <div className="flex items-center justify-between mb-3">
+              <ThemeIcon name={stat.icon} size={18} />
+              <Badge variant="success" dot>{stat.change}</Badge>
+            </div>
+            <p className="text-2xl font-semibold text-[#0EA5E9]">{stat.value}</p>
+            <p className="text-sm text-slate-700 mt-1">{stat.label}</p>
+          </Card>
+        ))}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="lg:col-span-2 space-y-4">
           <h3 className="text-lg font-medium text-slate-900 flex items-center gap-2">
-            <Clock size={18} className="text-slate-600" />
+            <ThemeIcon name="Clock" size={18} />
             Recent Activity
           </h3>
           {recentActivity.map((activity) => (
@@ -97,7 +82,7 @@ const Dashboard = () => {
           </Card>
           <Card>
             <div className="flex items-center gap-2">
-              <CheckCircle2 size={18} className="text-slate-700" />
+              <ThemeIcon name="CheckCircle2" size={18} />
               <h4 className="font-medium text-slate-900">Resume Status: Good</h4>
             </div>
             <p className="text-sm text-slate-600 mt-2">Last scanned 2 days ago.</p>

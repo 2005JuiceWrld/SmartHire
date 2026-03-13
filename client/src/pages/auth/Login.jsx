@@ -6,6 +6,8 @@ import Button from '../../components/common/Button';
 import Input from '../../components/common/Input';
 import Card from '../../components/common/Card';
 
+const LOGO_URL = 'https://cdn.builder.io/api/v1/image/assets%2Fb4e372bd30c641588bf37e96a1f5ff16%2F35803bcd13954b6086d50a91dc9dee71';
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -71,7 +73,7 @@ const Login = () => {
 
   if (showRoleSelection) {
     return (
-      <div className="min-h-screen bg-[#DBEAFE] flex items-center justify-center p-4">
+      <div className="min-h-screen bg-[#EEF2F7] flex items-center justify-center p-4">
         <Card className="max-w-md w-full p-6">
           <h3 className="text-xl font-semibold text-slate-900">Select Account Role</h3>
           <p className="text-sm text-slate-600 mt-1 mb-5">
@@ -101,8 +103,19 @@ const Login = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#DBEAFE] flex items-center justify-center p-4">
-      <Card className="w-full max-w-md p-6 sm:p-8">
+    <div className="min-h-screen bg-[#EEF2F7] flex items-center justify-center p-4">
+      <div className="w-full max-w-md">
+        <div className="flex items-center justify-center gap-3 mb-8">
+          <div className="w-10 h-10 flex items-center justify-center">
+            <img
+              src={LOGO_URL}
+              alt="SmartHire Logo"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">SmartHire</h1>
+        </div>
+        <Card className="w-full p-6 sm:p-8 rounded-lg">
         <h2 className="text-2xl font-semibold text-slate-900">Sign in</h2>
         <p className="text-sm text-slate-600 mt-1 mb-6">Use your account credentials to continue.</p>
 
@@ -162,7 +175,8 @@ const Login = () => {
             Register
           </Link>
         </p>
-      </Card>
+        </Card>
+      </div>
     </div>
   );
 };

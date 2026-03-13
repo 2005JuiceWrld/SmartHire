@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Search, User, Star, CheckCircle, XCircle, Sparkles, Filter, Briefcase, ArrowRight } from 'lucide-react';
+import { Search, UserCircle, Star, CheckCircle, XCircle, Filter, Briefcase, ArrowRight } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import Card from '../../components/common/Card';
 import Button from '../../components/common/Button';
@@ -80,7 +80,6 @@ const RecruiterSearch = () => {
               disabled={loading || !skills.trim()}
               className="px-10 py-5 bg-blue-600 text-white hover:bg-blue-700 rounded-[1.5rem] shadow-sm text-lg font-black min-w-[200px]"
               loading={loading}
-              icon={Sparkles}
             >
               Search Talent
             </Button>
@@ -107,7 +106,7 @@ const RecruiterSearch = () => {
           <EmptyState 
             title="No candidates matched" 
             description="We couldn't find any candidates with those specific skills. Try broadening your search terms."
-            icon={User}
+            icon={UserCircle}
           />
         ) : (
           <div className="grid grid-cols-1 gap-6">
@@ -125,7 +124,7 @@ const RecruiterSearch = () => {
                           />
                         ) : (
                           <div className="w-20 h-20 rounded-[1.5rem] bg-slate-100 flex items-center justify-center text-slate-400 border-2 border-slate-50 shadow-md group-hover:bg-blue-50 group-hover:text-blue-400 transition-all">
-                            <User size={32} />
+                            <UserCircle size={32} />
                           </div>
                         )}
                         <div className="absolute -bottom-2 -right-2 bg-blue-500 w-5 h-5 rounded-full border-4 border-white"></div>

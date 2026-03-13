@@ -33,7 +33,7 @@ const ProtectedRoute = ({ allowedRoles }) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#DBEAFE] text-slate-700">
+      <div className="min-h-screen flex items-center justify-center bg-[#EEF2F7] text-slate-700">
         <div className="flex flex-col items-center gap-4">
           <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
           <p className="text-sm font-medium">Loading SmartHire...</p>
@@ -68,7 +68,7 @@ function AppContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#DBEAFE] text-slate-700">
+      <div className="min-h-screen flex items-center justify-center bg-[#EEF2F7] text-slate-700">
         <div className="flex flex-col items-center gap-4">
           <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
           <p className="text-sm font-medium">Initializing SmartHire...</p>

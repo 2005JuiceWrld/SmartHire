@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { PlusCircle, CheckCircle, ArrowLeft, Briefcase, MapPin, DollarSign, FileText, Sparkles } from 'lucide-react';
+import { PlusCircle, CheckCircle, ArrowLeft, Briefcase, MapPin, DollarSign, FileText } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import Card from '../../components/common/Card';
@@ -131,7 +131,6 @@ const CreateJob = () => {
                     value={formData.requiredSkills}
                     onChange={handleChange}
                     placeholder="e.g. React, TypeScript, GraphQL, Node.js"
-                    icon={Sparkles}
                 />
                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">
                   Our AI uses these tags to rank and match top-tier candidates.

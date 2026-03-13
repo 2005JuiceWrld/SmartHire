@@ -8,7 +8,7 @@ import EmptyState from '../../components/common/EmptyState';
 import { 
   Search, 
   Filter, 
-  User, 
+  UserCircle, 
   MapPin, 
   Zap, 
   Star, 
@@ -205,7 +205,7 @@ const Recruiter = () => {
             <EmptyState 
               title="No talent detected" 
               description="Our neural network couldn't find matches for those specific parameters. Try widening your audit range."
-              icon={User}
+              icon={UserCircle}
             />
           )}
         </div>

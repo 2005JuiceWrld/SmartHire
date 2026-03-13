@@ -1,49 +1,35 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { 
-  LayoutDashboard, 
-  UserCircle, 
-  Users, 
-  FileSearch, 
-  Bell, 
-  Settings, 
-  Sparkles,
-  PlusCircle,
-  Briefcase,
-  Search,
-  LogOut,
-  ChevronRight,
-  X
-} from 'lucide-react';
+import ThemeIcon from '../common/ThemeIcon';
 
 const Sidebar = ({ isOpen, onClose }) => {
   const { user, logout } = useAuth();
 
   const candidateLinks = [
-    { name: 'Dashboard', icon: LayoutDashboard, path: '/' },
-    { name: 'Profile', icon: UserCircle, path: '/profile' },
-    { name: 'Resume Analysis', icon: FileSearch, path: '/resume-analysis' },
-    { name: 'Connections', icon: Users, path: '/connections' },
-    { name: 'Notifications', icon: Bell, path: '/notifications' },
-    { name: 'Settings', icon: Settings, path: '/settings' },
+    { name: 'Dashboard', icon: 'LayoutDashboard', path: '/' },
+    { name: 'Profile', icon: 'UserCircle', path: '/profile' },
+    { name: 'Resume Analysis', icon: 'FileSearch', path: '/resume-analysis' },
+    { name: 'Connections', icon: 'Users', path: '/connections' },
+    { name: 'Notifications', icon: 'Bell', path: '/notifications' },
+    { name: 'Settings', icon: 'Settings', path: '/settings' },
   ];
 
   const recruiterLinks = [
-    { name: 'Dashboard', icon: LayoutDashboard, path: '/recruiter/dashboard' },
-    { name: 'Talent Search', icon: Search, path: '/recruiter/search' },
-    { name: 'My Jobs', icon: Briefcase, path: '/recruiter/jobs' },
-    { name: 'Create Job', icon: PlusCircle, path: '/recruiter/create-job' },
-    { name: 'Notifications', icon: Bell, path: '/notifications' },
-    { name: 'Settings', icon: Settings, path: '/settings' },
+    { name: 'Dashboard', icon: 'LayoutDashboard', path: '/recruiter/dashboard' },
+    { name: 'Talent Search', icon: 'Search', path: '/recruiter/search' },
+    { name: 'My Jobs', icon: 'Briefcase', path: '/recruiter/jobs' },
+    { name: 'Create Job', icon: 'PlusCircle', path: '/recruiter/create-job' },
+    { name: 'Notifications', icon: 'Bell', path: '/notifications' },
+    { name: 'Settings', icon: 'Settings', path: '/settings' },
   ];
 
   const adminLinks = [
-    { name: 'Dashboard', icon: LayoutDashboard, path: '/admin/dashboard' },
-    { name: 'Users', icon: Users, path: '/admin/users' },
-    { name: 'Jobs', icon: Briefcase, path: '/admin/jobs' },
-    { name: 'Notifications', icon: Bell, path: '/notifications' },
-    { name: 'Settings', icon: Settings, path: '/settings' },
+    { name: 'Dashboard', icon: 'LayoutDashboard', path: '/admin/dashboard' },
+    { name: 'Users', icon: 'Users', path: '/admin/users' },
+    { name: 'Jobs', icon: 'Briefcase', path: '/admin/jobs' },
+    { name: 'Notifications', icon: 'Bell', path: '/notifications' },
+    { name: 'Settings', icon: 'Settings', path: '/settings' },
   ];
 
   const links = user?.role === 'admin'
@@ -72,7 +58,7 @@ const Sidebar = ({ isOpen, onClose }) => {
       <div className="h-16 px-4 border-b border-slate-200 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2.5">
           <div className="bg-blue-600 p-1.5 rounded-md">
-            <Sparkles size={16} className="text-white" />
+            <ThemeIcon name="Sparkles" size={16} className="brightness-0 invert" />
           </div>
           <span className="text-lg font-semibold text-slate-900">SmartHire</span>
         </Link>
@@ -82,7 +68,7 @@ const Sidebar = ({ isOpen, onClose }) => {
           className="lg:hidden p-2 rounded-md text-slate-600 hover:bg-blue-200"
           onClick={onClose}
         >
-          <X size={18} />
+          <ThemeIcon name="X" size={18} />
         </button>
       </div>
 
@@ -91,7 +77,6 @@ const Sidebar = ({ isOpen, onClose }) => {
           Navigation
         </div>
         {links.map((link) => {
-          const Icon = link.icon;
           return (
             <NavLink
               key={link.name}
@@ -105,10 +90,10 @@ const Sidebar = ({ isOpen, onClose }) => {
               `}
             >
               <div className="flex items-center gap-3">
-                <Icon size={16} className="text-slate-500 group-[.active-link]:text-white" />
+                <ThemeIcon name={link.icon} size={16} className="group-[.active-link]:brightness-0 group-[.active-link]:invert" />
                 <span>{link.name}</span>
               </div>
-              <ChevronRight size={14} className="opacity-0 group-hover:opacity-100 text-slate-500" />
+              <ThemeIcon name="ChevronRight" size={14} className="opacity-0 group-hover:opacity-100" />
             </NavLink>
           );
         })}
@@ -140,7 +125,7 @@ const Sidebar = ({ isOpen, onClose }) => {
           }}
           className="w-full mt-1.5 flex items-center gap-2 px-3 py-2 rounded-md text-slate-700 hover:text-red-600 hover:bg-red-100 transition-colors text-sm"
         >
-          <LogOut size={16} />
+          <ThemeIcon name="LogOut" size={16} />
           <span>Sign Out</span>
         </button>
       </div>

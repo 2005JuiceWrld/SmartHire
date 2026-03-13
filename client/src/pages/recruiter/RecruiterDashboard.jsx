@@ -1,17 +1,8 @@
 import React, { useState } from 'react';
-import {
-  Users,
-  Briefcase,
-  Search,
-  PlusCircle,
-  TrendingUp,
-  MessageSquare,
-  Filter,
-  MoreVertical
-} from 'lucide-react';
 import Card from '../../components/common/Card';
 import Button from '../../components/common/Button';
 import Badge from '../../components/common/Badge';
+import ThemeIcon from '../../components/common/ThemeIcon';
 
 const RecruiterDashboard = () => {
   const [stats] = useState({
@@ -37,22 +28,21 @@ const RecruiterDashboard = () => {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" icon={Filter}>Filter</Button>
-          <Button icon={PlusCircle}>Post Job</Button>
+          <Button variant="outline" icon={(props) => <ThemeIcon name="Settings" {...props} />}>Filter</Button>
+          <Button icon={(props) => <ThemeIcon name="PlusCircle" {...props} />}>Post Job</Button>
         </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: 'Active Jobs', value: stats.activeJobs, icon: Briefcase },
-          { label: 'Total Applicants', value: stats.totalApplicants, icon: Users },
-          { label: 'New This Week', value: stats.newApplications, icon: TrendingUp },
-          { label: 'In Interview', value: stats.interviewing, icon: MessageSquare }
+          { label: 'Active Jobs', value: stats.activeJobs, icon: 'Briefcase' },
+          { label: 'Total Applicants', value: stats.totalApplicants, icon: 'Users' },
+          { label: 'New This Week', value: stats.newApplications, icon: 'TrendingUp' },
+          { label: 'In Interview', value: stats.interviewing, icon: 'MessageSquare' }
         ].map((stat, i) => {
-          const Icon = stat.icon;
           return (
             <Card key={i}>
-              <Icon size={18} className="text-slate-600 mb-3" />
+              <ThemeIcon name={stat.icon} size={18} className="mb-3" />
               <p className="text-sm text-slate-600">{stat.label}</p>
               <p className="text-2xl font-semibold text-slate-900 mt-1">{stat.value}</p>
             </Card>
@@ -79,7 +69,7 @@ const RecruiterDashboard = () => {
                 <div className="flex items-center gap-3">
                   <Badge variant={job.status === 'Urgent' ? 'danger' : 'success'} dot>{job.status}</Badge>
                   <button className="p-1.5 text-slate-500 hover:bg-slate-100 rounded-md">
-                    <MoreVertical size={16} />
+                    <ThemeIcon name="MoreHorizontal" size={16} />
                   </button>
                 </div>
               </div>
@@ -95,7 +85,7 @@ const RecruiterDashboard = () => {
           <h3 className="text-lg font-medium text-slate-900">Talent Discovery</h3>
           <Card>
             <h4 className="font-medium text-slate-900 flex items-center gap-2">
-              <Search size={16} className="text-slate-600" />
+              <ThemeIcon name="Search" size={16} />
               Suggested Matches
             </h4>
             <p className="text-sm text-slate-600 mt-2 mb-4">

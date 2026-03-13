@@ -1,8 +1,8 @@
 import React from 'react';
 import Card from '../../components/common/Card';
 import Button from '../../components/common/Button';
-import { Settings as SettingsIcon, Shield, Bell, Moon, LogOut, ChevronRight, User, Globe, Lock, Sliders, Sparkles } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import ThemeIcon from '../../components/common/ThemeIcon';
 
 const Settings = () => {
   const { logout } = useAuth();
@@ -11,7 +11,7 @@ const Settings = () => {
     {
       title: 'Professional Profile',
       description: 'Manage how recruiters and peers see your professional persona.',
-      icon: User,
+      icon: 'UserCircle',
       items: [
         { label: 'Public Visibility', desc: 'Control who can discover your profile' },
         { label: 'Language & Region', desc: 'Set your preferred interface language' },
@@ -21,7 +21,7 @@ const Settings = () => {
     {
       title: 'Privacy & Security',
       description: 'Advanced settings to keep your professional data safe.',
-      icon: Shield,
+      icon: 'Shield',
       items: [
         { label: 'Authentication', desc: 'Password and Two-Factor settings' },
         { label: 'Session Management', desc: 'View and manage active devices' },
@@ -31,7 +31,7 @@ const Settings = () => {
     {
       title: 'Intelligence Alerts',
       description: 'Configure how you receive AI matching notifications.',
-      icon: Sparkles,
+      icon: 'Sparkles',
       items: [
         { label: 'Job Match Frequency', desc: 'How often to receive new job matches' },
         { label: 'Neural Digest', desc: 'Weekly summary of network activity' },
@@ -49,7 +49,7 @@ const Settings = () => {
         </div>
         <Button 
           variant="outline" 
-          icon={LogOut} 
+          icon={(props) => <ThemeIcon name="LogOut" {...props} />} 
           onClick={logout}
           className="text-red-600 border-red-100 hover:bg-red-50 hover:border-red-200"
         >
@@ -59,12 +59,11 @@ const Settings = () => {
 
       <div className="space-y-6">
         {sections.map((section, idx) => {
-          const Icon = section.icon;
           return (
             <Card key={idx} noPadding className="overflow-hidden border-none shadow-xl shadow-slate-100/50">
               <div className="p-8 flex items-start gap-6 bg-slate-50/50 border-b border-slate-100">
                 <div className="w-14 h-14 rounded-2xl bg-white text-blue-600 flex items-center justify-center flex-shrink-0 shadow-sm border border-slate-100">
-                  <Icon size={28} />
+                  <ThemeIcon name={section.icon} size={28} />
                 </div>
                 <div>
                   <h3 className="text-xl font-black text-slate-900">{section.title}</h3>
@@ -78,7 +77,7 @@ const Settings = () => {
                       <span className="text-base font-bold text-slate-800 block group-hover:text-blue-600 transition-colors">{item.label}</span>
                       <span className="text-xs font-semibold text-slate-400 mt-0.5 block">{item.desc}</span>
                     </div>
-                    <ChevronRight size={20} className="text-slate-300 group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
+                    <ThemeIcon name="ChevronRight" size={20} className="group-hover:translate-x-1 transition-all" />
                   </button>
                 ))}
               </div>
@@ -90,7 +89,7 @@ const Settings = () => {
           <div className="relative z-10 flex items-center justify-between text-slate-900">
             <div className="flex items-center gap-6">
               <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center border border-blue-200 group-hover:bg-blue-200 transition-colors">
-                <Moon size={28} className="text-blue-600" />
+                <ThemeIcon name="Moon" size={28} />
               </div>
               <div>
                 <h3 className="text-xl font-black">Interface Theme</h3>

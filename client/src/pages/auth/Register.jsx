@@ -6,6 +6,8 @@ import Button from '../../components/common/Button';
 import Input from '../../components/common/Input';
 import Card from '../../components/common/Card';
 
+const LOGO_URL = 'https://cdn.builder.io/api/v1/image/assets%2Fb4e372bd30c641588bf37e96a1f5ff16%2F35803bcd13954b6086d50a91dc9dee71';
+
 const Register = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -44,8 +46,19 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#DBEAFE] flex items-center justify-center p-4 py-8">
-      <Card className="w-full max-w-md p-6 sm:p-8">
+    <div className="min-h-screen bg-[#EEF2F7] flex items-center justify-center p-4 py-8">
+      <div className="w-full max-w-md">
+        <div className="flex items-center justify-center gap-3 mb-8">
+          <div className="w-10 h-10 flex items-center justify-center">
+            <img
+              src={LOGO_URL}
+              alt="SmartHire Logo"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">SmartHire</h1>
+        </div>
+        <Card className="w-full p-6 sm:p-8 rounded-lg">
         <h2 className="text-2xl font-semibold text-slate-900">Create account</h2>
         <p className="text-sm text-slate-600 mt-1 mb-6">Enter your details to get started.</p>
 
@@ -107,7 +120,7 @@ const Register = () => {
                 onClick={() => setFormData({ ...formData, role: 'candidate' })}
                 className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-md border text-sm font-medium transition-colors ${
                   formData.role === 'candidate'
-                    ? 'bg-blue-500 border-blue-500 text-white'
+                    ? 'bg-sky-50 border-sky-500 text-sky-700 ring-1 ring-sky-500'
                     : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
                 }`}
               >
@@ -119,7 +132,7 @@ const Register = () => {
                 onClick={() => setFormData({ ...formData, role: 'recruiter' })}
                 className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-md border text-sm font-medium transition-colors ${
                   formData.role === 'recruiter'
-                    ? 'bg-blue-500 border-blue-500 text-white'
+                    ? 'bg-sky-50 border-sky-500 text-sky-700 ring-1 ring-sky-500'
                     : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
                 }`}
               >
@@ -136,11 +149,12 @@ const Register = () => {
 
         <p className="text-sm text-slate-600 mt-6 text-center">
           Already have an account?
-          <Link to="/login" className="ml-1 text-slate-900 font-medium hover:underline">
+          <Link to="/login" className="ml-1 text-sky-600 font-bold hover:underline">
             Sign In
           </Link>
         </p>
-      </Card>
+        </Card>
+      </div>
     </div>
   );
 };

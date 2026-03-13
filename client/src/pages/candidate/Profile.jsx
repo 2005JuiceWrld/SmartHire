@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import axios from 'axios';
 import { 
-  User, 
+  UserCircle, 
   Mail, 
   MapPin, 
   Briefcase, 
   GraduationCap, 
-  Plus, 
+  PlusCircle, 
   Trash2, 
   Save, 
   Loader2,
@@ -199,7 +199,7 @@ const Profile = () => {
           <Card>
             <div className="flex items-center gap-3 mb-8 pb-4 border-b border-slate-100">
               <div className="p-2 bg-blue-50 text-blue-600 rounded-lg">
-                <User size={20} />
+                <UserCircle size={20} />
               </div>
               <h2 className="text-xl font-bold text-slate-900">Personal Information</h2>
             </div>
@@ -265,7 +265,7 @@ const Profile = () => {
                 </div>
                 <h2 className="text-xl font-bold text-slate-900">Work History</h2>
               </div>
-              <Button variant="ghost" size="sm" icon={Plus} onClick={handleAddExperience}>Add Experience</Button>
+              <Button variant="ghost" size="sm" icon={PlusCircle} onClick={handleAddExperience}>Add Experience</Button>
             </div>
             
             <div className="space-y-6">
