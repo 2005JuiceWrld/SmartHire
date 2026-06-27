@@ -1,4 +1,4 @@
-# SmartHire - A Social Media Platform
+# SmartHire 
 
 <p align="center"> 
   <img src="https://github.com/D-4-DIBAKAR/SmartHire/assets/71878062/5f3725b9-e32e-4326-b3f1-346a157055a0.png" alt="SmartHire Logo" width="200">
