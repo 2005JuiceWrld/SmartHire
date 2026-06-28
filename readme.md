@@ -1,135 +1,188 @@
-# SmartHire 
+# SmartHire
 
-<p align="center"> 
-  <img src="https://github.com/D-4-DIBAKAR/SmartHire/assets/71878062/5f3725b9-e32e-4326-b3f1-346a157055a0.png" alt="SmartHire Logo" width="200">
-</p>
- 
-SmartHire is a dynamic social media platform enabling users to connect, share moments, and engage with their network. Developed on the MERN stack (MongoDB, Express.js, React, Node.js), it leverages Cloudinary for seamless media storage.
+SmartHire is an AI-assisted recruitment and professional networking platform for candidates, recruiters, and admins. It combines resume analysis, job matching, recruiter search, social networking, and platform moderation in a single workflow.
 
-## Features
+## What It Does
 
-- **User Authentication:** Robust authentication system with JWT.
-- **Profile Management:** Customize profiles, add a profile picture, and share details.
-- **Post Creation:** Share text and media-rich posts with your network.
-- **News Feed:** Stay updated with posts from connections.
-- **Real-time Interaction:** Like, dislike, comment, and interact with posts in real-time.
-- **Comment Replies:** Engage in threaded conversations with the ability to reply.
-- **Dark and Light Mode:** Choose your preferred theme for a personalized experience.
-- **Email Verification:** Users can log in after proper email verification.
-- **Password Management:** Reset or forget password functionality via email.
-- **Cloudinary Integration:** Seamlessly upload and store media content using Cloudinary.
+- Helps candidates upload resumes and get ATS-style analysis
+- Helps recruiters search and rank candidates by skill fit
+- Lets recruiters post jobs and review AI-ranked matches
+- Includes social features such as posts, likes, comments, and friend requests
+- Adds admin controls for platform oversight
+
+## Highlights
+
+| Area | What is implemented |
+|---|---|
+| Authentication | JWT login and register, role-based access for `candidate`, `recruiter`, and `admin` |
+| Candidate flow | Profile editing, resume upload, resume analysis, job matching, connections, notifications |
+| Recruiter flow | Candidate search, job creation, job listings, AI-ranked candidate matches |
+| Admin flow | User management, job management, platform stats |
+| AI / ML | PDF text extraction, skill detection, ATS scoring, resume-JD matching, smart feed ranking, connection suggestions, spam detection |
+| Email flows | Email verification and password reset |
+
+## AI And Matching
+
+The AI service is a local Python FastAPI app, not a hosted LLM integration.
+
+Implemented AI / ML components:
+
+- PyMuPDF for PDF text extraction
+- spaCy for text processing and skill detection
+- sentence-transformers for semantic embeddings
+- cosine similarity for resume-JD and post ranking
+- TF-IDF and cosine-based candidate matching
+- NetworkX for connection suggestions
+- keyword-based spam detection
+
+Not used in this codebase:
+
+- OpenAI, Gemini, or Llama APIs
+- OCR
+- Google OAuth
+- TensorFlow / PyTorch training pipelines
+- Chatbot module
 
 ## Tech Stack
- 
-- **Frontend:**
 
-  - React
-  - React Router
-  - Redux for state management
-  - Axios for API requests
+### Frontend
 
-- **Backend:**
+- React 19
+- Vite
+- React Router
+- Axios
+- Lucide React
+- Tailwind CSS 4
 
-  - Node.js
-  - Express.js
-  - MongoDB for database
-  - Mongoose for ODM
-  - JWT for authentication
-  - Node Mailer for email functionality
+### Backend
 
-- **Cloud Services:**
-  - Cloudinary for media storage
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- JWT
+- Multer
+- Nodemailer
+- Helmet
+- Morgan
 
-## Getting Started
+### AI Service
 
-1. **Clone the repository:**
+- Python 3
+- FastAPI
+- PyMuPDF
+- spaCy
+- sentence-transformers
+- scikit-learn
+- NetworkX
+- pandas
+- numpy
+- PyTorch
 
-   ```bash
-   git clone https://github.com/D-4-DIBAKAR/SmartHire.git
+## Main User Capabilities
 
-   cd socialSync
-   ```
+### Candidates
 
-## Screenshots
+- Register and log in
+- Edit profile details, skills, education, experience, bio, and location
+- Upload a PDF resume for AI analysis
+- View ATS score, extracted skills, strengths, and improvement suggestions
+- Compare a resume against a job description
+- Send and accept friend requests
+- View profile views
 
-![ss2](https://github.com/D-4-DIBAKAR/SmartHire/assets/71878062/70b8bc35-7e44-430b-ab20-9c7038ac75b6)
+### Recruiters
 
-![ss1](https://github.com/D-4-DIBAKAR/SmartHire/assets/71878062/d9f704f9-8993-4e0e-8042-6719f5e9840a)
+- Search candidates by skills
+- Create job posts
+- View their own job posts
+- Open AI-ranked matches for each job
+- Review skill overlap, missing skills, and match scores
 
-![ss3](https://github.com/D-4-DIBAKAR/SmartHire/assets/71878062/e758ad76-ce13-40ee-b50d-a8bb321f4030)
+### Admins
 
-![ss4](https://github.com/D-4-DIBAKAR/SmartHire/assets/71878062/00d82148-3efa-4e9e-a228-c0cbe068fe78)
+- View platform-wide stats
+- View all users
+- Delete users
+- View all jobs
+- Delete jobs
 
-![ss5](https://github.com/D-4-DIBAKAR/SmartHire/assets/71878062/0b167916-2390-4201-af45-06978ab4b277)
+## Platform Features
 
-![Ss6](https://github.com/D-4-DIBAKAR/SmartHire/assets/71878062/a3e5c94c-933d-4a2e-8ced-11f9250cbdd2)
+- Candidate and recruiter dashboards
+- Social feed with AI-based post ranking
+- Spam filtering for posts
+- Notifications and settings pages
+- Email verification
+- Password reset flow
 
-# Project Routes
+## Deployment Notes
 
-| **Endpoint**                     | **Method** | **Middleware** |
-| -------------------------------- | ---------- | -------------- |
-| **Authentication Routes**        |            |                |
-| `/register`                      | POST       | None           |
-| `/login`                         | POST       | None           |
-| `/verify/:userId/:token`         | GET        | None           |
-| `/request-passwordreset`         | POST       | None           |
-| `/reset-password/:userId/:token` | GET        | None           |
-| `/reset-password`                | POST       | None           |
-| **User Routes**                  |            |                |
-| `/get-user/:id?`                 | POST       | userAuth       |
-| `/update-user`                   | PUT        | userAuth       |
-| **Friend Request Routes**        |            |                |
-| `/friend-request`                | POST       | userAuth       |
-| `/get-friend-request`            | POST       | userAuth       |
-| `/accept-request`                | POST       | userAuth       |
-| **Profile Views**                |            |                |
-| `/profile-view`                  | POST       | userAuth       |
-| **Suggested Friends**            |            |                |
-| `/suggested-friends`             | POST       | userAuth       |
-| **Post Routes**                  |            |                |
-| `/create-post`                   | POST       | userAuth       |
-| `/`                              | POST       | userAuth       |
-| `/:id`                           | POST       | userAuth       |
-| `/get-user-post/:id`             | POST       | userAuth       |
-| `/comments/:postId`              | GET        | userAuth       |
-| `/like/:id`                      | POST       | userAuth       |
-| `/like-comment/:id/:rid?`        | POST       | userAuth       |
-| `/comment/:id`                   | POST       | userAuth       |
-| `/reply-comment/:id`             | POST       | userAuth       |
-| `/:id`                           | DELETE     | userAuth       |
+- Frontend: React app in `client/`
+- Backend: Express app in `server/`
+- AI service: FastAPI app in `ai-service/`
+- Database: MongoDB
 
+The backend serves the built frontend from `server/views/build` when present.
 
-## Badges
+## Local Setup
 
-<span>
+### Backend
 
-![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)
- 
-![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)
- 
-![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
- 
-![Express](https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white)
- 
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
- 
-![Nodejs](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
- 
-![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
- 
-![Tailwind_CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
- 
-![VSCode](https://img.shields.io/badge/VSCode-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
- 
-![Axios](https://img.shields.io/badge/Axios-671DDF?style=for-the-badge&logo=axios&logoColor=white)
- 
-![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
- 
-![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
- 
-![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
- 
-![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)
+```bash
+cd server
+npm install
+npm run dev
+```
 
-</span>
+### AI Service
 
+```bash
+cd ai-service
+pip install -r requirements.txt
+uvicorn main:app --reload --port 8000
+```
+
+### Frontend
+
+```bash
+cd client
+npm install
+npm run dev
+```
+
+## Environment Variables
+
+Add these to the backend `.env` file:
+
+- `MONGO_URL`
+- `JWT_SECRET_KEY`
+- `AUTH_EMAIL`
+- `AUTH_PASSWORD`
+- `APP_URL`
+- `PORT` optional, defaults to `8800`
+
+## Metrics
+
+The codebase exposes platform counters, but not model-evaluation benchmarks.
+
+Available stats:
+
+- Total users
+- Total candidates
+- Total recruiters
+- Total jobs
+- Total resumes analyzed
+
+Not currently tracked:
+
+- Resume parsing accuracy
+- Matching accuracy
+- Average response time
+- Training dataset size
+
+## Notes
+
+- Resume upload currently supports PDF only.
+- Some dashboard values are placeholders in the UI, so they should not be described as live analytics.
+- If you change the backend or AI service host/port, update the hardcoded localhost URLs in the client and server.
